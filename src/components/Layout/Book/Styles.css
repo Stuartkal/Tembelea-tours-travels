@@ -1,0 +1,197 @@
+.booking-conatiner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.book-main {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 90%;
+	margin-bottom: 2rem;
+}
+
+.book-left-column {
+	display: flex;
+	align-items: flex-start;
+	width: 70%;
+	flex-direction: column;
+	background: #fff;
+}
+
+.book-left-column hr {
+	width: 100%;
+	background: rgba(0, 0, 0, 0.1);
+	margin-top: 3rem;
+}
+
+.book-left-column h1 {
+	font-weight: 600;
+	margin: 0;
+}
+
+.header-text-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header-text-row h5 {
+	color: rgba(0, 0, 0, 0.3);
+	font-size: 14px;
+}
+
+.description {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	padding: 10px;
+	flex-direction: column;
+}
+
+.description h2 {
+	color: rgba(0, 0, 0, 0.7);
+	margin: 0;
+	font-weight: 600;
+}
+
+.description h5 {
+	color: rgba(0, 0, 0, 0.6);
+	font-weight: 400;
+	font-size: 15px;
+}
+
+.book-right-column {
+	display: flex;
+	justify-content: center;
+	width: 27%;
+	flex-direction: column;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.book-slider-container {
+	width: 100%;
+}
+
+.book-slider-container img {
+	height: 500px;
+	width: 100%;
+}
+
+.amount {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: green;
+	width: 100%;
+}
+
+.amount h2 {
+	color: #fff;
+}
+
+.tab-pane {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: #fff;
+	padding: 10px;
+}
+
+.tab-pane input {
+	outline: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	height: 40px;
+	width: 80%;
+	margin-bottom: 0.5rem;
+}
+
+.tab-pane textarea {
+	outline: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	height: 100px;
+	width: 80%;
+	margin-bottom: 0.5rem;
+}
+
+.tab-pane button {
+	outline: none;
+	color: #fff;
+	background: green;
+	border: none;
+	height: 40px;
+	width: 100%;
+	border-radius: 5px;
+	transition: 0.5s ease-in-out;
+}
+
+.tab-pane button:hover {
+	cursor: pointer;
+	background: rgb(3, 105, 3);
+}
+
+.tab-pane h3 {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.tab-pane-row-label {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.tab-pane-row-label p {
+	color: rgba(0, 0, 0, 0.3);
+	margin: 0;
+}
+
+.tab-pane-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 1rem;
+}
+
+.tab-pane-row input {
+	width: 70%;
+	height: 30px;
+	outline: none;
+	border: none;
+}
+.guest-form {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.guest-form-column {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.guest-form-column h4 {
+	color: rgba(0, 0, 0, 0.5);
+	margin: 00.5rem;
+}
+
+.guest-form-column input {
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	height: 30px;
+	width: 90%;
+	margin-bottom: 0.5rem;
+}
