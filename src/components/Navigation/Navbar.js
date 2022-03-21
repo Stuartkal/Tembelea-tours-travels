@@ -14,9 +14,9 @@ const Navbar = () => {
                     <img onClick={() => navigate('/')} src={logo} alt="logo"/>
                 </div>
                 <div className='links'>
-                    <h4 onClick={() => navigate('/')}>Home</h4>
-                    <h4>About</h4>
-                    <h4>Contact Us</h4>
+                    {/* <h4 onClick={() => navigate('/')}>Home</h4> */}
+                    {/* <h4>About</h4>
+                    <h4>Contact Us</h4> */}
                 </div>
                 <div className='profile'>
                     {/* <button>login</button> */}

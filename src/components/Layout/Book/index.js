@@ -34,7 +34,7 @@ const  Book = () => {
   const { state } = useLocation()
   const form = useRef()
 
-  console.log(State)
+  // console.log(State)
 
   const sendEmail = (e) => {
     e.preventDefault()

@@ -178,3 +178,37 @@
 		left: -400%;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.slider figure img {
+		height: 300px;
+	}
+
+	.content {
+		flex-direction: column;
+	}
+
+	.backdrop {
+		height: 300px;
+	}
+
+	.backdrop h1 {
+		font-size: 40px;
+	}
+
+	.backdrop p {
+		font-size: 18px;
+	}
+
+	.card {
+		width: 85%;
+		margin-top: 0;
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 1rem;
+	}
+
+	.card-row {
+		width: 90%;
+	}
+}
