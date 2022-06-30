@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,28 +15,27 @@ import rafting from '../../../assets/images/rafting.jpg';
 import days from '../../../assets/images/7days.jpg';
 
 const slider = () => {
+	const settings = {
+		dots: true,
+		dotsClass: 'slick-dots slick-thumb',
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1
+	};
 
-    const settings = {
-        dots: true,
-      dotsClass: "slick-dots slick-thumb",
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    }
+	return (
+		<div className="book-slider-container">
+			<Slider {...settings}>
+				<img src={safari} alt="uganda safaris" />
+				<img src={buffalo} alt="uganda safaris" />
+				<img src={sunset} alt="uganda safaris" />
+				<img src={zebra} alt="uganda safaris" />
+				<img src={holiday} alt="uganda safaris" />
+				<img src={mountain} alt="uganda safaris" />
+			</Slider>
+		</div>
+	);
+};
 
-  return (
-    <div className='book-slider-container'>
-          <Slider {...settings}>
-              <img src={safari} />
-              <img src={buffalo}/>
-              <img src={sunset}/>
-              <img src={zebra}/>
-              <img src={holiday}/>
-              <img src={mountain} />
-          </Slider>
-    </div>
-  )
-}
-
-export default slider
+export default slider;

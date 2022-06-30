@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import {useLocation} from 'react-router-dom'
-import emailjs from '@emailjs/browser'
-import apiKeys from './emailkey'
+import emailjs from '@emailjs/browser';
+import apiKeys from './emailkey';
 import Slider from './slider';
 import { Tabs, DatePicker, Space } from 'antd';
 import Accordion from '@material-ui/core/Accordion';
