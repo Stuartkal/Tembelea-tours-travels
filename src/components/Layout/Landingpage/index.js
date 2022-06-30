@@ -19,7 +19,7 @@ const LandingPage = () => {
 
 	const data = [
 		{
-			trip: '7 Days Adventure',
+			trip: 'Gorilla Trekking',
 			location: 'Kibale National Park',
 			charge: '350,000',
 			image: days
