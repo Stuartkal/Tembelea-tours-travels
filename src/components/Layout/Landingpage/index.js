@@ -37,7 +37,7 @@ const LandingPage = () => {
 			image: mountain
 		},
 		{
-			trip: 'Zoo Drive',
+			trip: 'Kanyanchu Visitors’ Centre',
 			location: 'Honeymoon',
 			charge: '300,000',
 			image: holiday
