@@ -39,7 +39,7 @@ const LandingPage = () => {
 		{
 			trip: 'Kanyanchu Visitors’ Centre',
 			location: 'Honeymoon',
-			charge: '300,000',
+			charge: '700,000',
 			image: holiday
 		},
 		{

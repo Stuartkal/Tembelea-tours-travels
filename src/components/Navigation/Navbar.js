@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import logo1 from '../../assets/images/logo1.png';
 
 import './Styles.css';
 const Navbar = () => {
@@ -10,7 +10,7 @@ const Navbar = () => {
 		<div className="nav-container">
 			<div className="nav-content">
 				<div className="logo">
-					<img onClick={() => navigate('/')} src={logo} alt="tour uganda" />
+					<img onClick={() => navigate('/')} src={logo1} alt="tour uganda" />
 				</div>
 				<div className="links">
 					{/* <h4 onClick={() => navigate('/')}>Home</h4> */}
