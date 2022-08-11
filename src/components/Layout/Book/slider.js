@@ -14,7 +14,8 @@ import mountain from '../../../assets/images/mountain.jpg';
 import rafting from '../../../assets/images/rafting.jpg';
 import days from '../../../assets/images/7days.jpg';
 
-const slider = () => {
+const slider = ({ gallery }) => {
+	console.log(gallery.map((g) => g));
 	const settings = {
 		dots: true,
 		dotsClass: 'slick-dots slick-thumb',
@@ -27,12 +28,7 @@ const slider = () => {
 	return (
 		<div className="book-slider-container">
 			<Slider {...settings}>
-				<img src={safari} alt="uganda safaris" />
-				<img src={buffalo} alt="uganda safaris" />
-				<img src={sunset} alt="uganda safaris" />
-				<img src={zebra} alt="uganda safaris" />
-				<img src={holiday} alt="uganda safaris" />
-				<img src={mountain} alt="uganda safaris" />
+				{gallery.map((r, index) => <img key={index} src={r} alt="ihanga tours and travels" />)}
 			</Slider>
 		</div>
 	);
