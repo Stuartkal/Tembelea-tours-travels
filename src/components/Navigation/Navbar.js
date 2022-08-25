@@ -16,8 +16,8 @@ const Navbar = () => {
 					<h4>+256 705 950815</h4>
 				</div>
 				<div className="nav-header-row">
-					<EmailIcon className="nav-icon" style={{ fontSize: '20px' }} />
-					<h4>Tembeleatoursandtravels@gmail.com</h4>
+					<EmailIcon className="nav-icon" style={{ fontSize: '20px', marginLeft: '1rem' }} />
+					<h4>Ihangatoursandtravels@gmail.com</h4>
 				</div>
 			</div>
 			<div className="nav-content">

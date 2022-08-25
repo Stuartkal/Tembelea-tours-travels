@@ -80,18 +80,17 @@ const Descriptions = () => {
 				setState({ ...state, featuredimageLink: res.data.url });
 				setUpload('Featured Image Uploaded');
 				setPreview('');
-				const data = {
-					trip: state.trip,
-					days: state.days,
-					location: state.location,
-					featuredimageLink: res.data.url,
-					gallery: gallery,
-					description: draftToHtml(convertToRaw(state.editorState.getCurrentContent()))
-				};
 				db
 					.collection('trips')
-					.doc()
-					.set(data)
+					.add({
+						trip: state.trip,
+						days: state.days,
+						location: state.location,
+						featuredimageLink: res.data.url,
+						public_id: res.data.public_id,
+						gallery: gallery,
+						description: draftToHtml(convertToRaw(state.editorState.getCurrentContent()))
+					})
 					.then((res) => {
 						// console.log(res);
 						setUpload('Published, Thank you!');
@@ -151,9 +150,7 @@ const Descriptions = () => {
 						<p>Add featured image</p>
 					</div>
 				</div>
-				{preview ? (
-					<Image style={{ width: '400px', height: '200px', marginBottom: '2rem' }} src={preview} />
-				) : null}
+				{preview ? <Image style={{ height: '100px' }} className="preview" src={preview} /> : null}
 				<div className="form-row">
 					<Dropzone onDrop={(acceptedFiles) => setImages(acceptedFiles)}>
 						{({ getRootProps, getInputProps }) => (

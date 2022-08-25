@@ -38,16 +38,84 @@
 	z-index: 100;
 }
 
-.backdrop h1 {
+.backdrop-form {
+	width: 25%;
+}
+
+.backdrop-row {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 90%;
+}
+
+.backdrop-row-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 70%;
+}
+
+.backdrop-row-left h1 {
 	color: #fff;
 	font-size: 70px;
 	margin: 0;
 }
 
-.backdrop p {
+.backdrop-row-left p {
 	margin: 0;
 	color: #fff;
 	text-align: center;
+}
+
+.backdrop-row-right {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.backdrop-row-right button {
+	outline: none;
+	color: #fff;
+	background: #2b4400;
+	border: none;
+	height: 40px;
+	width: 50%;
+	border-radius: 5px;
+	transition: 0.5s ease-in-out;
+}
+
+.backdrop-row-right button:hover {
+	cursor: pointer;
+	background: #263a03;
+}
+
+.backdrop-form-column {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+
+.backdrop-form-column input {
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	height: 30px;
+	width: 100%;
+	margin-bottom: 0.5rem;
+}
+
+.backdrop-form-column textarea {
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	height: 100px;
+	width: 100%;
+	margin-bottom: 0.5rem;
 }
 
 .content {
@@ -56,15 +124,15 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	width: 100%;
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+	padding: 10px;
+	background: #dd9933;
 }
 
 .card {
 	display: flex;
 	align-items: flex-start;
 	flex-direction: column;
-	background: #36a652;
+	background: #1f2933;
 	width: 25%;
 	margin-right: 3rem;
 	margin-bottom: 5rem;
@@ -220,11 +288,24 @@
 	}
 
 	.backdrop h1 {
-		font-size: 40px;
+		font-size: 25px;
+	}
+
+	.backdrop-row-left {
+		width: 100%;
+	}
+
+	.backdrop-form {
+		width: 100%;
+		margin-top: 0.5rem;
 	}
 
 	.backdrop p {
-		font-size: 18px;
+		font-size: 14px;
+	}
+
+	.backdrop-row {
+		display: block;
 	}
 
 	.card {
@@ -237,5 +318,8 @@
 
 	.card-row {
 		width: 90%;
+	}
+	.ribbon {
+		width: 40%;
 	}
 }
