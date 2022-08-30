@@ -36,7 +36,7 @@ const LandingPage = () => {
 
 	const [ info, setInfo ] = React.useState([]);
 
-	const info_doc = info[0];
+	const info_doc = info && info.slice(-1).pop();
 
 	const sendEmail = (e) => {
 		if (state.name === '' || state.contact === '' || state.email === '') return;
@@ -62,7 +62,7 @@ const LandingPage = () => {
 		);
 	};
 
-	// console.log(data);
+	// console.log(info_doc);
 
 	React.useEffect(() => {
 		getData();
@@ -106,14 +106,8 @@ const LandingPage = () => {
 			<div className="backdrop">
 				<div className="backdrop-row">
 					<div className="backdrop-row-left">
-						<h1>
-							Live your <strong style={{ color: 'Green' }}>Adventure</strong>
-						</h1>
-						<p>
-							Ihanga Tours and Travels showcases the beauty of Uganda in the most mesmerizing and
-							fulfilled tours and experiences. explorer the wildlife and all the beauty that the pearl of
-							Africa has got to offer.
-						</p>
+						<h1>{!info_doc ? null : info_doc.title}</h1>
+						<p>{!info_doc ? null : info_doc.status}</p>
 					</div>
 					<form ref={form} onSubmit={sendEmail} className="backdrop-form">
 						<Accordion style={{ width: '100%' }}>

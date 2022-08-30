@@ -57,7 +57,7 @@ const Edit = () => {
 		getWebsitInfo();
 	}, []);
 
-	console.log(info);
+	// console.log(info);
 
 	const getData = async () => {
 		try {

@@ -5,7 +5,10 @@ body {
 	font-family: 'Poppins', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: #dd9933!important;
+	background: #f4b553;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #926d32, #a2a632, #f4b553);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #926d32, #a2a632, #f4b553); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 ::-webkit-scrollbar {
