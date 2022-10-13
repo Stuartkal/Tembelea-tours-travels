@@ -1,6 +1,6 @@
 import React from 'react';
 import { db, storage } from '../config/firebase';
-import { ref, uploadBytes, getDownloadURL, list } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
