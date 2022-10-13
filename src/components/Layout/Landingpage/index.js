@@ -16,6 +16,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import apiKeys from '../Book/emailkey';
+import Share from '../ModalUI/Share';
 
 import './Styles.css';
 const LandingPage = () => {
@@ -198,6 +199,7 @@ const LandingPage = () => {
 					))}
 				</div>
 			)}
+			<Share url="https://www.ihangatoursandtravels.com/" />
 			<Footer />
 			<FloatingWhatsApp
 				phoneNumber="256705950815"

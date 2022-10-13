@@ -1,5 +1,7 @@
 import React from 'react';
-import { db } from '../config/firebase';
+import { db, storage } from '../config/firebase';
+import { ref, uploadBytes, getDownloadURL, list } from 'firebase/storage';
+import { v4 } from 'uuid';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
@@ -17,6 +19,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const Edit = () => {
 	const [ image, setImage ] = React.useState('');
+	const [ imagelink, setImagelink ] = React.useState('');
+	const [ imageUrl, setImageUrl ] = React.useState([]);
+	const [ imageLoader, setImageLoader ] = React.useState(false);
+	const [ blogImg, setBlogImg ] = React.useState('');
 	const [ message, setMessage ] = React.useState('');
 	const [ msg, setMsg ] = React.useState('');
 	const [ gallery, setGallery ] = React.useState([]);
@@ -26,6 +32,7 @@ const Edit = () => {
 	const [ info, setInfo ] = React.useState([]);
 	const [ modal_data, setModaldata ] = React.useState([]);
 	const [ open, setOpen ] = React.useState(false);
+	const [ aboutUs, setAboutUs ] = React.useState(false);
 	const [ visible1, setVisible1 ] = React.useState(false);
 	const [ visible2, setVisible2 ] = React.useState(false);
 	const [ visible3, setVisible3 ] = React.useState(false);
@@ -42,8 +49,13 @@ const Edit = () => {
 		phone: '',
 		email: '',
 		whatsapp: '',
-		about: '',
+		about: EditorState.createEmpty(),
 		slider: []
+	});
+
+	const [ blog, setBlog ] = React.useState({
+		title: '',
+		desc: ''
 	});
 
 	const info_doc = info[0];
@@ -52,12 +64,14 @@ const Edit = () => {
 		setState({ ...state, editorState: e });
 	};
 
+	const onEditorAboutUsStateChange = (e) => {
+		setUpdate({ ...update, about: e });
+	};
+
 	React.useEffect(() => {
 		getData();
 		getWebsitInfo();
 	}, []);
-
-	// console.log(info);
 
 	const getData = async () => {
 		try {
@@ -95,6 +109,30 @@ const Edit = () => {
 
 	const handleChange = (e) => {
 		setImage(e.target.files[0]);
+	};
+
+	const handleGenerateImageLinkChange = (e) => {
+		setImagelink(e.target.files[0]);
+	};
+
+	const handleBlogChange = (e) => {
+		setBlogImg(e.target.files[0]);
+	};
+
+	const generateImageLinkChange = () => {
+		if (!imagelink) return;
+		setImageLoader(true);
+		const imageRef = ref(storage, `ihanga/${imagelink.name + v4()}`);
+		uploadBytes(imageRef, imagelink)
+			.then((snapshot) => {
+				getDownloadURL(snapshot.ref).then((url) => {
+					setImageUrl((prev) => [ ...prev, url ]);
+					setImageLoader(false);
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	const updateTitle = async () => {
@@ -168,7 +206,7 @@ const Edit = () => {
 			phone: info_doc.phone,
 			email: info_doc.email,
 			whatsapp: info_doc.whatsapp,
-			about: update.about,
+			about: draftToHtml(convertToRaw(update.about.getCurrentContent())),
 			slider: info_doc.slider
 		};
 		await db.collection('website-info').doc(info[0].id).set(data);
@@ -212,6 +250,43 @@ const Edit = () => {
 		};
 		await db.collection('website-info').doc(info[0].id).set(data);
 		setMessage('Gallery Updated');
+	};
+
+	const addBlog = async () => {
+		if (!blogImg || !blog.title || !blog.desc) return setMessage('All fields are required');
+		setMessage('uploading...');
+		const data = new FormData();
+		data.append('file', blogImg);
+		data.append('upload_preset', 'starthub_preset');
+		await axios
+			.post('https://api.cloudinary.com/v1_1/starthub-africa/upload', data)
+			.then((res) => {
+				setMessage('Featured Image Uploaded');
+				db
+					.collection('blogs')
+					.add({
+						title: blog.title,
+						desc: blog.desc,
+						featuredimageLink: res.data.url,
+						public_id: res.data.public_id
+					})
+					.then((res) => {
+						// console.log(res);
+						setMessage('Blog Published, Thank you!');
+						setBlogImg('');
+						setBlog({
+							title: '',
+							desc: ''
+						});
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			})
+			.catch((error) => {
+				setMessage('Trouble Uploading Image, Try again');
+				console.log(error);
+			});
 	};
 
 	const updateTripFeaturedImage = async () => {
@@ -402,6 +477,42 @@ const Edit = () => {
 
 	return (
 		<div className="description-main">
+			{aboutUs ? (
+				<ModalUI>
+					<div className="modal">
+						<div className="modal-header">
+							<button onClick={updateAboutUs}>Post Info</button>
+							{loader ? <p>Posting Info, please wait...</p> : null}
+							{imageLoader ? <p>Generating Image Link, Please wait...</p> : null}
+							<CloseIcon
+								onClick={() => setAboutUs(false)}
+								style={{ fontsize: '20px', color: 'rgba(0,0,0,0.2)' }}
+							/>
+						</div>
+						<div className="modal-main">
+							<div className="modal-content">
+								<input onChange={handleGenerateImageLinkChange} type="file" style={{ border: '0' }} />
+								<button onClick={generateImageLinkChange}>Generate image link</button>
+								{imageUrl[0] ? (
+									<div className="imagelink">
+										<p>copy image link: </p>
+										<a href={imageUrl[0]} target="blank">
+											{imageUrl[0]}
+										</a>
+									</div>
+								) : null}
+								<Editor
+									editorState={update.about}
+									wrapperClassName="demo-wrapper"
+									editorClassName="demo-editor"
+									onEditorStateChange={onEditorAboutUsStateChange}
+									placeholder="Type about us info here..."
+								/>
+							</div>
+						</div>
+					</div>
+				</ModalUI>
+			) : null}
 			{open && modal_data !== undefined ? (
 				<ModalUI>
 					<div className="modal">
@@ -602,18 +713,11 @@ const Edit = () => {
 						</AccordionSummary>
 						<AccordionDetails>
 							<div className="sidebar-cards">
-								<textarea
-									placeholder="type..."
-									value={update.about}
-									onChange={(e) => setUpdate({ ...update, about: e.target.value })}
-								/>
-								<button onClick={updateAboutUs}>post</button>
-								{loader ? <Spin /> : null}
-								{message ? <p>{message}</p> : null}
+								<button onClick={() => setAboutUs(true)}>Edit About Us</button>
 							</div>
 						</AccordionDetails>
 					</Accordion>
-					<Accordion style={{ width: '100%' }}>
+					{/* <Accordion style={{ width: '100%' }}>
 						<AccordionSummary
 							expandIcon={<ExpandMoreIcon />}
 							aria-controls="panel1a-content"
@@ -638,6 +742,33 @@ const Edit = () => {
 								)}
 								<button onClick={updateInfoGallery}>post images</button>
 								{loader ? <Spin /> : null}
+								{message ? <p>{message}</p> : null}
+							</div>
+						</AccordionDetails>
+					</Accordion> */}
+					<Accordion style={{ width: '100%' }}>
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+						>
+							<h3>Add Blog</h3>
+						</AccordionSummary>
+						<AccordionDetails>
+							<div className="sidebar-cards">
+								<h4>Add featured Image</h4>
+								<input onChange={handleBlogChange} type="file" style={{ background: 'none' }} />
+								<input
+									value={blog.title}
+									onChange={(e) => setBlog({ ...blog, title: e.target.value })}
+									placeholder="Title"
+								/>
+								<textarea
+									value={blog.desc}
+									onChange={(e) => setBlog({ ...blog, desc: e.target.value })}
+									placeholder="description"
+								/>
+								<button onClick={addBlog}>Post Blog</button>
 								{message ? <p>{message}</p> : null}
 							</div>
 						</AccordionDetails>

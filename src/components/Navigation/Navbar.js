@@ -27,6 +27,9 @@ const Navbar = () => {
 				<div className="profile">{/* <button>login</button> */}</div>
 				<div className="links">
 					<h4 onClick={() => navigate('/')}>Home</h4>
+					<h4 onClick={() => navigate('/blog')}>Blog</h4>
+					<h4 onClick={() => navigate('/gallery')}>Gallery</h4>
+					<h4 onClick={() => navigate('/aboutUs')}>About Us</h4>
 					{/* <h4>About</h4>
                     <h4>Contact Us</h4> */}
 				</div>

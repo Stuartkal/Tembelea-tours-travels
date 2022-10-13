@@ -155,7 +155,6 @@
 	align-items: flex-start;
 	justify-content: center;
 	width: 100%;
-	background: #dd9933;
 }
 
 .description-row {
@@ -491,6 +490,27 @@
 
 .modal-content h3 {
 	font-weight: bold;
+}
+
+.imagelink {
+	display: flex;
+	align-items:center ;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.imagelink p {
+	margin: 0;
+}
+
+.imagelink h5 {
+	margin: 0;
+}
+
+.imagelink a {
+	margin-left: 5px;
 }
 
 

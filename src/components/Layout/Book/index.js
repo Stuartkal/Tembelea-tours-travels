@@ -8,6 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Footer from '../../Navigation/Footer';
 import FloatingWhatsApp from 'react-floating-whatsapp';
 import logo from '../../../assets/images/logo3.png';
+import Share from '../ModalUI/Share';
 
 import './Styles.css';
 import 'antd/dist/antd.min.css';
@@ -142,6 +143,7 @@ const Book = () => {
 						</TabPane> */}
 				</div>
 			</div>
+			<Share url="https://www.ihangatoursandtravels.com" />
 			<Footer />
 			<FloatingWhatsApp
 				phoneNumber="256705950815"

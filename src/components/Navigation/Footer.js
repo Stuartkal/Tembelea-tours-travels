@@ -45,7 +45,11 @@ const Footer = () => {
 				<div className="footer-right">
 					<h1>About US</h1>
 					<div className="separator" />
-					<p>{!data ? <p>Travel with us for a memorable experience</p> : data.about}</p>
+					<p>
+						Ihanga Tours and Travels is a specialist safari and destination management company that provides
+						a wide range of services for tourists and travelers. We are a registered company based in
+						Kampala on Mbogo road.
+					</p>
 				</div>
 			</div>
 		</div>
